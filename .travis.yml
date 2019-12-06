@@ -52,11 +52,6 @@ matrix:
     name: "Xenial kinetic"
     dist: xenial
     env: ROS_DISTRO=kinetic
-    addons:
-        apt:
-          sources:
-            - ubuntu-toolchain-r-test
-            - george-edison55-precise-backports
 
 services:
   - docker
