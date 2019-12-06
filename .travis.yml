@@ -127,3 +127,6 @@ after_success:
   - lcov --remove coverage.info '/opt/*' '/usr/*' '*/devel/*' '*test_*' '*_test*' --output-file coverage.info
   - lcov --list coverage.info
   - coveralls-lcov coverage.info
+
+notifications:
+  email: false
