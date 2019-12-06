@@ -87,6 +87,7 @@ before_install:
 
 # Create a catkin workspace with the package under integration.
 install:
+  - sudo apt-get install -y -qq lcov
   - mkdir -p ~/catkin_ws/src
   - cd ~/catkin_ws/src
   - catkin_init_workspace
