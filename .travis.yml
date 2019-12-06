@@ -71,7 +71,6 @@ env:
 
 # Install system dependencies, namely a very barebones ROS setup.
 before_install:
-  - pip install --user cpp-coveralls
   - sudo sh -c "echo \"deb http://packages.ros.org/ros/ubuntu $ROS_CI_DESKTOP main\" > /etc/apt/sources.list.d/ros-latest.list"
   - sudo apt-key adv --keyserver 'hkp://keyserver.ubuntu.com:80' --recv-key C1CF6E31E6BADE8868B172B4F42ED6FBAB17C654
   - sudo apt-get update -qq
@@ -123,9 +122,6 @@ before_script:
 # non-zero when a test fails (which notifies Travis the build failed).
 script:
   - export SOURCE_PATH=$(pwd)
-  - echo "Testing iiwa_stack on ROS '$ROS_DISTRO'"
-  - docker pull ros:$ROS_DISTRO-robot > /dev/null
-  - docker run -e SOURCE_PATH -v $(pwd):/root/iiwa_stack_ws/src -it ros:$ROS_DISTRO-robot /bin/bash -c "cd /root/iiwa_stack_ws/src; source .travis/ci.sh"
   - source /opt/ros/$ROS_DISTRO/setup.bash
   - cd ~/catkin_ws
   - catkin_make $( [ -f $CATKIN_OPTIONS ] && cat $CATKIN_OPTIONS )
