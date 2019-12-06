@@ -40,18 +40,31 @@
 ################################################################################
 
 #sudo: required
-cache:
-  - apt
+
 
 # Build all valid Ubuntu/ROS combinations available on Travis VMs.
 sudo: required
+cache:
+  - apt
 language: cpp
 matrix:
   include:
   - os: linux
     name: "Xenial kinetic"
     dist: xenial
-    env: ROS_DISTRO=kinetic
+    compiler: gcc
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+            - george-edison55-precise-backports
+          packages:
+            - g++-5
+            - cmake
+            - cmake-data
+    env:
+      - ROS_DISTRO=kinetic
+      - COMPILER=g++-5
 
 services:
   - docker
@@ -85,8 +98,9 @@ before_install:
   - sudo apt-get install ros-$ROS_DISTRO-position-controllers ros-$ROS_DISTRO-joint-state-controller
   - sudo apt-get install ros-$ROS_DISTRO-joint-trajectory-controller ros-$ROS_DISTRO-moveit
   - sudo apt install ros-$ROS_DISTRO-gazebo-ros-control
+  - pip install coveralls-lcov
   - sudo apt-get install -y -qq lcov
-  - gem install coveralls-lcov
+
 
 # Create a catkin workspace with the package under integration.
 install:
