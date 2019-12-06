@@ -52,6 +52,8 @@ matrix:
     dist: xenial
     env: ROS_DISTRO=kinetic
 
+services:
+  - docker
 # Configuration variables. All variables are global now, but this can be used to
 # trigger a build matrix for different ROS distributions if desired.
 env:
@@ -78,6 +80,10 @@ before_install:
   # Prepare rosdep to install dependencies.
   - sudo rosdep init
   - rosdep update --include-eol-distros  # Support EOL distros.
+  - sudo apt-get install ros-$ROS_DISTRO-velocity-controllers ros-$ROS_DISTRO-ros-control
+  - sudo apt-get install ros-$ROS_DISTRO-position-controllers ros-$ROS_DISTRO-joint-state-controller
+  - sudo apt-get install ros-$ROS_DISTRO-joint-trajectory-controller ros-$ROS_DISTRO-moveit
+  - sudo apt install ros-$ROS_DISTRO-gazebo-ros-control
 
 # Create a catkin workspace with the package under integration.
 install:
@@ -114,6 +120,10 @@ before_script:
 # fails. Running `catkin_test_results` aggregates all the results and returns
 # non-zero when a test fails (which notifies Travis the build failed).
 script:
+  - export SOURCE_PATH=$(pwd)
+  - echo "Testing iiwa_stack on ROS '$ROS_DISTRO'"
+  - docker pull ros:$ROS_DISTRO-robot > /dev/null
+  - docker run -e SOURCE_PATH -v $(pwd):/root/iiwa_stack_ws/src -it ros:$ROS_DISTRO-robot /bin/bash -c "cd /root/iiwa_stack_ws/src; source .travis/ci.sh"
   - source /opt/ros/$ROS_DISTRO/setup.bash
   - cd ~/catkin_ws
   - catkin_make $( [ -f $CATKIN_OPTIONS ] && cat $CATKIN_OPTIONS )
