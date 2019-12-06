@@ -81,10 +81,10 @@ before_install:
   # Prepare rosdep to install dependencies.
   - sudo rosdep init
   - rosdep update --include-eol-distros  # Support EOL distros.
-  - sudo apt-get install ros-$ROS_DISTRO-velocity-controllers ros-$ROS_DISTRO-ros-control
-  - sudo apt-get install ros-$ROS_DISTRO-position-controllers ros-$ROS_DISTRO-joint-state-controller
-  - sudo apt-get install ros-$ROS_DISTRO-joint-trajectory-controller ros-$ROS_DISTRO-moveit
-  - sudo apt install ros-$ROS_DISTRO-gazebo-ros-control
+  # - sudo apt-get install ros-$ROS_DISTRO-velocity-controllers ros-$ROS_DISTRO-ros-control
+  # - sudo apt-get install ros-$ROS_DISTRO-position-controllers ros-$ROS_DISTRO-joint-state-controller
+  # - sudo apt-get install ros-$ROS_DISTRO-joint-trajectory-controller ros-$ROS_DISTRO-moveit
+  # - sudo apt install ros-$ROS_DISTRO-gazebo-ros-control
   - sudo apt-get install -y -qq lcov
   - gem install coveralls-lcov
 
@@ -127,10 +127,9 @@ script:
   - source /opt/ros/$ROS_DISTRO/setup.bash
   - cd ~/catkin_ws
   - catkin_make $( [ -f $CATKIN_OPTIONS ] && cat $CATKIN_OPTIONS )
-  - export SOURCE_PATH=$(pwd)
   - echo "Testing iiwa_stack on ROS '$ROS_DISTRO'"
   - docker pull ros:$ROS_DISTRO-robot > /dev/null
-  - docker run -e SOURCE_PATH -v $(pwd):/root/iiwa_stack_ws/src -it ros:$ROS_DISTRO-robot /bin/bash -c "cd /root/iiwa_stack_ws/src; source .travis/ci.sh"
+  - docker run -e CI_SOURCE_PATH -v $(pwd):/root/iiwa_stack_ws/src -it ros:$ROS_DISTRO-robot /bin/bash -c "cd /root/iiwa_stack_ws/src; source .travis/ci.sh"
   # Run the tests, ensuring the path is set correctly.
   - source devel/setup.bash
   - catkin_make run_tests_object_collection_robotic_arm
