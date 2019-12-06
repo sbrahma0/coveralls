@@ -128,7 +128,7 @@ script:
   - catkin_make $( [ -f $CATKIN_OPTIONS ] && cat $CATKIN_OPTIONS )
   - echo "Testing iiwa_stack on ROS '$ROS_DISTRO'"
   - docker pull ros:$ROS_DISTRO-robot > /dev/null
-  - docker run -e CI_SOURCE_PATH -v $(pwd):/root/iiwa_stack_ws/src -it ros:$ROS_DISTRO-robot /bin/bash -c "cd /root/iiwa_stack_ws/src; source .travis/ci.sh"
+  - docker run -e CI_SOURCE_PATH -v $(pwd):/root/iiwa_stack_ws/src -it ros:$ROS_DISTRO-robot /bin/bash
   # Run the tests, ensuring the path is set correctly.
   - source devel/setup.bash
   - catkin_make run_tests_object_collection_robotic_arm
