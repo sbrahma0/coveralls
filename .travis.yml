@@ -44,7 +44,8 @@ cache:
   - apt
 
 # Build all valid Ubuntu/ROS combinations available on Travis VMs.
-language: generic
+sudo: required
+language: cpp
 matrix:
   include:
   - os: linux
