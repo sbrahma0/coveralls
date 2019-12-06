@@ -1,7 +1,7 @@
 # Object Collection Robotic Arm
 
-[![Build Status](https://travis-ci.org/Ghost1995/object_collection_robotic_arm.svg?branch=master)](https://travis-ci.org/Ghost1995/object_collection_robotic_arm)
-[![Coverage Status](https://coveralls.io/repos/github/Ghost1995/object_collection_robotic_arm/badge.svg?branch=master)](https://coveralls.io/github/Ghost1995/object_collection_robotic_arm?branch=master)
+[![Build Status][![Build Status](https://travis-ci.org/Chinj17/coveralls.svg?branch=master)](https://travis-ci.org/Chinj17/coveralls)
+[![Coverage Status][![Coverage Status](https://coveralls.io/repos/github/Chinj17/coveralls/badge.svg?branch=master)](https://coveralls.io/github/Chinj17/coveralls?branch=master)
 [![License](https://img.shields.io/badge/License-BSD%203--Clause-blue.svg)](https://opensource.org/licenses/BSD-3-Clause)
 ---
 
@@ -17,7 +17,7 @@ The developed system is capable of:
 Few applications of the project include:
 * Object segregation in shipping companies, like Amazon, Alibaba and Ikea.
 * Transporting objects from one location to another.
-* Kit building operation in assembly lines. 
+* Kit building operation in assembly lines.
 
 This project has been programmed in the C++ programming language and uses C++ 11/14 features with emphasis given to Object Oriented Programming principles. The code follows the [Google C++ Style Guide](https://google.github.io/styleguide/cppguide.html) with cpplint validation. Cppcheck is also used for static code analysis. This project is done by implementing pair-programming and follows Test-driven Development to guide implementation and uses unit tests to test the code coverage written using Google Test framework. The code follows doxygen-formatted comments to aid doxygen documentation.
 
@@ -80,7 +80,7 @@ The total length of the video presentation is approximately 20 minutes. To see a
 
 This contributors for this project are:
 
-* Anirudh Topiwala 
+* Anirudh Topiwala
 
 I am currently pursing my masters in Robotics at the University of Maryland,College Park. I hold a Bachelors degree in Mechanical Engineering from Institute of Technology, Nirma University, India. I wish to pursue a career in Robotics with a focus in Computer Vision. My resume and more about my projects can be found on [GitHub](https://github.com/anirudhtopiwala) and [LinkedIn](https://www.linkedin.com/in/anirudhtopiwala/).
 
@@ -141,7 +141,7 @@ source devel/setup.bash
 ## Running the Demo using Launch File
 
 To run the demo, a launch file has been created. This launch file loads the Gazebo environment and runs the objSeg node to detect the objects on the table and segregate them onto the matching colored tables.
- 
+
 After following the [build instructions](#build-instructions), to run the demo, launch the code using the following commands:
 ```
 cd ~/catkin_ws/
@@ -386,7 +386,7 @@ cd docs/html
 firefox index.html
 ```
 
-## License 
+## License
 
 * OpenCV:  Copyright (C) 2015-2016, OpenCV Foundation, all rights reserved.
 * Doxygen license: Copyright © 1997-2016 by Dimitri van Heesch.
