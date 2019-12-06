@@ -81,10 +81,10 @@ before_install:
   # Prepare rosdep to install dependencies.
   - sudo rosdep init
   - rosdep update --include-eol-distros  # Support EOL distros.
-  # - sudo apt-get install ros-$ROS_DISTRO-velocity-controllers ros-$ROS_DISTRO-ros-control
-  # - sudo apt-get install ros-$ROS_DISTRO-position-controllers ros-$ROS_DISTRO-joint-state-controller
-  # - sudo apt-get install ros-$ROS_DISTRO-joint-trajectory-controller ros-$ROS_DISTRO-moveit
-  # - sudo apt install ros-$ROS_DISTRO-gazebo-ros-control
+  - sudo apt-get install ros-$ROS_DISTRO-velocity-controllers ros-$ROS_DISTRO-ros-control
+  - sudo apt-get install ros-$ROS_DISTRO-position-controllers ros-$ROS_DISTRO-joint-state-controller
+  - sudo apt-get install ros-$ROS_DISTRO-joint-trajectory-controller ros-$ROS_DISTRO-moveit
+  - sudo apt install ros-$ROS_DISTRO-gazebo-ros-control
   - sudo apt-get install -y -qq lcov
   - gem install coveralls-lcov
 
@@ -100,7 +100,6 @@ install:
   - source devel/setup.bash
   # Add the package under integration to the workspace using a symlink.
   - cd ~/catkin_ws/src
-  - git clone https://github.com/IFL-CAMP/iiwa_stack.git
   - ln -s $CI_SOURCE_PATH .
 
 # Install all dependencies, using wstool first and rosdep second.
